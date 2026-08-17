@@ -1,0 +1,25 @@
+# Anchor / Solana
+target/
+test-ledger/
+keys/
+*.so
+*.jsonl
+
+# Node / Next.js
+node_modules/
+.next/
+.vercel/
+
+# Local environment
+.env
+.env.local
+.env.*.local
+
+# Logs and OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Project reference documents (kept local, not committed)
+/docs/
