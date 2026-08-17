@@ -12,7 +12,7 @@ guestbook = "11111111111111111111111111111111"
 guestbook = "11111111111111111111111111111111"
 
 [provider]
-cluster = "Localnet"
+cluster = "Devnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

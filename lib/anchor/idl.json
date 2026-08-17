@@ -1,0 +1,13 @@
+{
+  "address": "11111111111111111111111111111111",
+  "metadata": { "name": "guestbook", "version": "0.1.0", "spec": "0.1.0" },
+  "version": "0.1.0",
+  "name": "guestbook",
+  "instructions": [
+    { "name": "initializeGlobal", "discriminator": [47, 225, 15, 112, 86, 51, 190, 231], "accounts": [{ "name": "global", "writable": true, "pda": { "seeds": [{ "kind": "const", "value": [103, 108, 111, 98, 97, 108] }] } }, { "name": "payer", "writable": true, "signer": true }, { "name": "systemProgram", "address": "11111111111111111111111111111111" }], "args": [] },
+    { "name": "postMessage", "discriminator": [214, 50, 100, 209, 38, 34, 7, 76], "accounts": [{ "name": "global", "writable": true, "pda": { "seeds": [{ "kind": "const", "value": [103, 108, 111, 98, 97, 108] }] } }, { "name": "message", "writable": true, "signer": false }, { "name": "author", "writable": true, "signer": true }, { "name": "systemProgram", "address": "11111111111111111111111111111111" }], "args": [{ "name": "content", "type": "string" }] }
+  ],
+  "accounts": [{ "name": "globalState", "discriminator": [163, 46, 74, 168, 216, 123, 133, 98] }, { "name": "messageAccount", "discriminator": [97, 144, 24, 58, 225, 40, 89, 223] }],
+  "errors": [{ "code": 6000, "name": "emptyMessage", "msg": "Message must not be empty." }, { "code": 6001, "name": "messageTooLong", "msg": "Message exceeds the 280 character limit." }, { "code": 6002, "name": "messageCountOverflow", "msg": "Message count overflow." }],
+  "types": [{ "name": "globalState", "type": { "kind": "struct", "fields": [{ "name": "messageCount", "type": "u64" }] } }, { "name": "messageAccount", "type": { "kind": "struct", "fields": [{ "name": "author", "type": "pubkey" }, { "name": "content", "type": "string" }, { "name": "timestamp", "type": "i64" }, { "name": "index", "type": "u64" }] } }]
+}

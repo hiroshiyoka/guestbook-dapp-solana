@@ -234,8 +234,6 @@ The generated IDL should be copied from `target/idl/guestbook.json` to `lib/anch
 
 Detailed product, technical, design, and data specifications are kept in `/docs` locally. The directory is excluded by `.gitignore`.
 
-Phase 1 source implementation is complete. The Anchor program and test suite are present, and `cargo check` passes. Frontend implementation, Devnet deployment, global-state bootstrap, and generated IDL integration remain pending.
-
 At the time of writing, `anchor`, `solana`, and `solana-keygen` are not available on `PATH` in the development environment. Therefore, `anchor build` and `anchor test` require the Solana and Anchor toolchain to be installed first.
 
 ## License
