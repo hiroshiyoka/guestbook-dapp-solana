@@ -1,12 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+
 import { useConnection } from "@solana/wallet-adapter-react";
 import { AnchorProvider, Program, type Idl } from "@coral-xyz/anchor";
+
+import { MessageCard } from "./MessageCard";
+
 import idl from "../lib/anchor/idl.json";
 import { PROGRAM_ID } from "../lib/constants";
 import type { GuestbookMessage } from "../lib/anchor/types";
-import { MessageCard } from "./MessageCard";
 
 export function MessageFeed() { const { connection } = useConnection(); const [messages, setMessages] = useState<GuestbookMessage[]>([]); const [loading, setLoading] = useState(true); const [error, setError] = useState<string>();
   const load = useCallback(async () => { try { setError(undefined); const program = new Program(idl as unknown as Idl, new AnchorProvider(connection, {} as never, { commitment: "confirmed" })); const items = await (program as any).account.messageAccount.all() as GuestbookMessage[]; setMessages(items.sort((a, b) => b.account.index.cmp(a.account.index))); } catch (e) { setError(e instanceof Error ? e.message : String(e)); } finally { setLoading(false); } }, [connection]);

@@ -1,5 +1,16 @@
 import type { GuestbookMessage } from "../lib/anchor/types";
 import { CLUSTER, EXPLORER_BASE } from "../lib/constants";
 
-function relative(seconds: number) { const diff = Math.max(0, Math.floor(Date.now() / 1000) - seconds); if (diff < 60) return "just now"; if (diff < 3600) return `${Math.floor(diff / 60)} min ago`; if (diff < 86400) return `${Math.floor(diff / 3600)} hr ago`; return `${Math.floor(diff / 86400)} d ago`; }
-export function MessageCard({ message }: { message: GuestbookMessage }) { const { account } = message; const address = account.author.toBase58(); return <article className="message"><div className="meta"><span>#{account.index.toString().padStart(4, "0")}</span><span>·</span><a className="author" href={`${EXPLORER_BASE}/address/${address}?cluster=${CLUSTER}`} target="_blank" rel="noreferrer">{address.slice(0, 5)}...{address.slice(-4)}</a><span>·</span><time dateTime={new Date(account.timestamp.toNumber() * 1000).toISOString()}>{relative(account.timestamp.toNumber())}</time></div><p className="body">{account.content}</p></article>; }
+function relative(seconds: number) { 
+    const diff = Math.max(0, Math.floor(Date.now() / 1000) - seconds); 
+    if (diff < 60) return "just now"; 
+    if (diff < 3600) return `${Math.floor(diff / 60)} min ago`; 
+    if (diff < 86400) return `${Math.floor(diff / 3600)} hr ago`; 
+    return `${Math.floor(diff / 86400)} d ago`; 
+}
+
+export function MessageCard({ message }: { message: GuestbookMessage }) { 
+    const { account } = message; 
+    const address = account.author.toBase58(); 
+    return <article className="message"><div className="meta"><span>#{account.index.toString().padStart(4, "0")}</span><span>·</span><a className="author" href={`${EXPLORER_BASE}/address/${address}?cluster=${CLUSTER}`} target="_blank" rel="noreferrer">{address.slice(0, 5)}...{address.slice(-4)}</a><span>·</span><time dateTime={new Date(account.timestamp.toNumber() * 1000).toISOString()}>{relative(account.timestamp.toNumber())}</time></div><p className="body">{account.content}</p></article>; 
+}
